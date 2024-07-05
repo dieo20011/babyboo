@@ -30,5 +30,12 @@ function showSlides() {
     setTimeout(showSlides, 3000); // Thay đổi hình ảnh mỗi 3 giây
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    var audio = document.getElementById('myAudio');
+    if (audio) {
+        audio.play();
+    }
+});
+
 updateCounter();
 setInterval(updateCounter, 1000); // Cập nhật số ngày mỗi giây
