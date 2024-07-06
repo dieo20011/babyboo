@@ -15,9 +15,32 @@ function updateCounter() {
     document.getElementById('minutes').textContent = diffMinutes;
     document.getElementById('seconds').textContent = diffSeconds;
 }
+const audio = document.getElementById('myAudio');
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = '<i class="fas fa-play"></i>';
+    const pauseIcon = '<i class="fas fa-pause"></i>';
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.innerHTML = pauseIcon;
+      } else {
+        audio.pause();
+        playBtn.innerHTML = playIcon;
+      }
+    });
+
 
 let slideIndex = 0;
 showSlides();
+document.addEventListener('DOMContentLoaded', () => {
+    const hearts = document.querySelectorAll('.heart');
+    hearts.forEach((heart, index) => {
+      heart.style.setProperty('--i', index);
+      heart.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      heart.style.left = `${Math.random() * 100}vw`;
+    });
+  });
 
 function showSlides() {
     let slides = document.getElementsByClassName("mySlides");

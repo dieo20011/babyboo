@@ -5,26 +5,70 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: rgb(238, 174, 202);
-  background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
+  background-color: #1A183E;
+  overflow: hidden;
 }
+.heart-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: pink;
+  transform: rotate(45deg);
+  animation: fall 5s infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: pink;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: -10px;
+}
+
+@keyframes fall {
+  0% {
+    top: -10%;
+    left: calc(100% * var(--i) / 10);
+    opacity: 1;
+  }
+  100% {
+    top: 110%;
+    left: calc(100% * var(--i) / 10);
+    opacity: 0;
+  }
+}
+
 
 .container {
   text-align: center;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  background: rgb(34, 193, 195);
   max-height: 700px;
-  background: linear-gradient(
-    0deg,
-    rgba(34, 193, 195, 1) 0%,
-    rgba(253, 187, 45, 1) 100%
-  );
+  opacity: 0.9;
+  background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
 
 h1 {
@@ -38,14 +82,29 @@ h1 {
 }
 
 #counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 2em;
   margin: 20px 0;
+}
+
+.time-segment {
+  margin: 0 10px;
+  padding: 10px;
+  border: 3px solid pink;
+  border-radius: 10px;
+  background: white;
+  color: #ff69b4;
+  display: inline-block;
+  text-align: center;
 }
 
 .slideshow-container {
   position: relative;
   max-width: 1000px;
   margin: auto;
+  max-height: 800px;
 }
 
 .mySlides {
@@ -56,7 +115,7 @@ img {
   vertical-align: middle;
   width: 100%;
   border-radius: 10px;
-  max-height: 900px;
+  max-height: 800px;
 }
 
 @keyframes rotate {
@@ -84,38 +143,61 @@ img {
     from {opacity: .4} 
     to {opacity: 1}
 }
-
 .audio-player {
-  border-radius: 8px; /* Bo góc */
+  border-radius: 8px; /* Rounded corners */
   margin-top: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow */
+  display: flex;
+  justify-content: center;
 }
 
-.audio-player audio {
-  margin-top: 10px; /* Khoảng cách từ bộ điều khiển */
+.audio-player::-webkit-media-controls-panel {
+  display: flex;
+  justify-content: center;
+  border-radius: 8px; /* Rounded corners for controls panel */
 }
 
-.audio-player audio::-webkit-media-controls-panel {
-  border-radius: 8px; /* Bo góc bộ điều khiển */
+.audio-player::-webkit-media-controls-current-time-display,
+.audio-player::-webkit-media-controls-time-remaining-display,
+.audio-player::-webkit-media-controls-timeline,
+.audio-player::-webkit-media-controls-volume-slider,
+.audio-player::-webkit-media-controls-mute-button,
+.audio-player::-webkit-media-controls-fullscreen-button,
+.audio-player::-webkit-media-controls-playback-rate-button,
+.audio-player::-webkit-media-controls-seek-back-button,
+.audio-player::-webkit-media-controls-seek-forward-button {
+  display: none !important;
 }
 
-.audio-player audio::-webkit-media-controls-play-button,
-.audio-player audio::-webkit-media-controls-volume-slider {
-  background-color: #555; /* Màu nền của nút play và volume slider */
+/* Additional customization */
+.audio-player::-webkit-media-controls-play-button {
+  background-color: #555; /* Background color of play button */
+  color: white; /* Color of play button */
+  border-radius: 50%; /* Rounded play button */
+  width: 50px; /* Width of play button */
+  height: 50px; /* Height of play button */
 }
 
-.audio-player audio::-webkit-media-controls-current-time-display,
-.audio-player audio::-webkit-media-controls-time-remaining-display {
-  color: #555; /* Màu chữ của thời gian hiện tại và thời gian còn lại */
+.custom-audio-player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 
-.audio-player audio::-webkit-media-controls-seek-back-button,
-.audio-player audio::-webkit-media-controls-seek-forward-button {
-  background-color: #555; /* Màu nền của nút tua */
+.play-button {
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow */
 }
 
-.audio-player audio::-webkit-media-controls-volume-slider {
-  background-color: #555; /* Màu nền của volume slider */
+.play-button:hover {
+  background-color: #444;
 }
-
 
