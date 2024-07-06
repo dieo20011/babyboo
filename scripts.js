@@ -50,7 +50,7 @@ function showSlides() {
     slideIndex++;
     if (slideIndex > slides.length) {slideIndex = 1}    
     slides[slideIndex-1].style.display = "block";  
-    setTimeout(showSlides, 3000); // Thay đổi hình ảnh mỗi 3 giây
+    setTimeout(showSlides, 2000);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -61,4 +61,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 updateCounter();
-setInterval(updateCounter, 1000); // Cập nhật số ngày mỗi giây
+setInterval(updateCounter, 1000);
